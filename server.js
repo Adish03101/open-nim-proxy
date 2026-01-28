@@ -41,6 +41,15 @@ app.get('/health', (req, res) => {
   });
 });
 
+app.get('/', (req, res) => {
+  res.json({ 
+    status: 'ok', 
+    service: 'OpenAI to NVIDIA NIM Proxy',
+    message: 'Proxy is running',
+    endpoints: ['/health', '/v1/models', '/v1/chat/completions']
+  });
+});
+
 // List models endpoint (OpenAI compatible)
 app.get('/v1/models', (req, res) => {
   const models = Object.keys(MODEL_MAPPING).map(model => ({
